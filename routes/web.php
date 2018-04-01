@@ -13,7 +13,7 @@
 Route::get('/', 'Frontend\TrangChu\TrangChuController@getHome')->name('trangchu');
 Route::get('/tin-tuc/{id}', 'Frontend\TrangChu\TrangChuController@noiDungBaiViet')->name('tintuc');
 Route::get('/gioi-thieu', 'Frontend\GioiThieu\GioiThieuController@getHome');
-Route::get('/dang-ky', 'Frontend\DangKy\DangKyController@getHome');
+Route::get('/dang-ky', 'Frontend\DangKy\DangKyController@getHome')->name('dangky');
 Route::get('/dang-ky-ajax', 'Frontend\DangKy\DangKyController@ajax')->name('ajaxDangky');
 Route::get('/dang-nhap', 'Frontend\DangNhap\DangNhapController@getHome');
 Route::post('/dang-nhap', 'Frontend\DangNhap\DangNhapController@dangNhap')->name("dangNhap");
@@ -40,4 +40,5 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::get('admin/tai-san-ajax', 'Backend\TaiSan\TaiSanController@ajax')->name('ajaxQuanLyTaiSan');
     Route::get('admin/tai-san/{id}', 'Backend\TaiSan\TaiSanController@suaTaiSan')->name('suaTaiSan');
     Route::post('admin/sua-tai-san', 'Backend\TaiSan\TaiSanController@suaTaiSanDB')->name('suaTaiSanDB');
+    Route::get('admin/them-sinh-vien', 'Backend\SinhVien\SinhVienController@themSinhVien')->name('themSinhVien');
 });

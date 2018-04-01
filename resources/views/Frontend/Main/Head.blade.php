@@ -1,5 +1,5 @@
 <div class="head">
-    <div class="col-xs-2"><img src="{{ asset('img/logo.jpg') }}" height="160" width="160"></div>
+    <div class="col-xs-2"><a href="{{ route('trangchu') }}"><img src="{{ asset('img/logo.jpg') }}" height="160" width="160"></a></div>
     <div class="col-xs-6 head-1">
         <div class="col-xs-12">TRƯỜNG ĐẠI HỌC SƯ PHẠM HÀ NỘI</div>
         <div class="col-xs-12">TRUNG TAM QUẢN LÝ KÝ TÚC XÁ</div>
@@ -18,7 +18,7 @@
         <nav class="navbar navbar-inverse" style="background-color: #007bff !important;">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff"><i class="fas fa-home"></i><span class="menu-2">TRANG CHỦ</span></a>
+              <a class="navbar-brand" href="{{ route('trangchu') }}" style="color: #fff"><i class="fas fa-home"></i><span class="menu-2">TRANG CHỦ</span></a>
             </div>
             <div class="navbar-header">
               <a class="navbar-brand" href="#" style="color: #fff">GIỚI THIỆU</a>
@@ -30,19 +30,16 @@
               <a class="navbar-brand" href="#" style="color: #fff">HƯỚNG DẪN</a>
             </div>
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff">ĐĂNG KÝ</a>
-            </div>
-            <div class="navbar-header">
               <a class="navbar-brand" href="#" style="color: #fff">SƠ ĐỒ</a>
             </div>
             <div class="navbar-header">
               <a class="navbar-brand" href="#" style="color: #fff">LIÊN HỆ</a>
             </div>
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff">ĐĂNG NHẬP</a>
+              <a class="navbar-brand" href="{{ route('dangNhap') }}" style="color: #fff">ĐĂNG NHẬP</a>
             </div>
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff">ĐĂNG KÝ</a>
+              <a class="navbar-brand" href="{{ route('dangky') }}" style="color: #fff">ĐĂNG KÝ</a>
             </div>
           </div>
         </nav>
@@ -59,15 +56,15 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                   <div class="item active">
-                    <img src="{{asset('img/slide4.jpg')}}" alt="Los Angeles" style="height: 550px; width: 100%">
+                    <img src="{{asset('img/dhsp1.jpg')}}" alt="Los Angeles" style="height: 550px; width: 100%">
                   </div>
 
                   <div class="item">
-                    <img src="{{asset('img/slide5.jpg')}}" alt="Chicago" style="height: 550px; width: 100%">
+                    <img src="{{asset('img/dhsp2.jpg')}}" alt="Chicago" style="height: 550px; width: 100%">
                   </div>
 
                   <div class="item">
-                    <img src="{{asset('img/slide6.jpg')}}" alt="New york" style="height: 550px; width: 100%">
+                    <img src="{{asset('img/dhsp3.jpg')}}" alt="New york" style="height: 550px; width: 100%">
                   </div>
                 </div>
 

@@ -335,11 +335,16 @@
               <li><a class="" href="grids.html">Grids</a></li>
             </ul>
           </li>
-          <li>
-            <a class="" href="widgets.html">
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
                           <i class="icon_genius"></i>
-                          <span>Widgets</span>
+                          <span>Sinh viên</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
+            <ul class="sub">
+              <li><a class="" href="{{ route('themSinhVien') }}">Thêm sinh viên</a></li>
+              <li><a class="" href="">Quản lý sinh viên</a></li>
+            </ul>
           </li>
           <li>
             <a class="" href="chart-chartjs.html">

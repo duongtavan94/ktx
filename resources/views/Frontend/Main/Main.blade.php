@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="body">
-    <div class="col-xs-12">@include('Frontend.Main.Head')</div>
+    <div class="col-xs-12" style="margin-bottom: 15px;">@include('Frontend.Main.Head')</div>
     <div class="col-xs-3">@include('Frontend.Main.Sidebar')</div>
     <div class="col-xs-9">@yield('content')</div>
     <div class="col-xs-12">@include('Frontend.Main.Foot')</div>
