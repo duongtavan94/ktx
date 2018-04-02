@@ -148,9 +148,9 @@ class ClassBaiViet extends ServiceProvider
         $id = $request->id;
         try {
             DB::beginTransaction();
-            // DB::table('posts')
-            //     ->where('id', $id)
-            //     ->delete();
+            DB::table('posts')
+                ->where('id', $id)
+                ->delete();
             DB::commit();
             $result['success'] = 1;
         } catch (\Exception $e) {

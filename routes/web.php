@@ -41,4 +41,5 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::get('admin/tai-san/{id}', 'Backend\TaiSan\TaiSanController@suaTaiSan')->name('suaTaiSan');
     Route::post('admin/sua-tai-san', 'Backend\TaiSan\TaiSanController@suaTaiSanDB')->name('suaTaiSanDB');
     Route::get('admin/them-sinh-vien', 'Backend\SinhVien\SinhVienController@themSinhVien')->name('themSinhVien');
+    Route::post('admin/sinh-vien-ajax', 'Backend\SinhVien\SinhVienController@ajaxSinhVien')->name('sinhVienAjax');
 });

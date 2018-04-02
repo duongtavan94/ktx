@@ -25,9 +25,10 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Mã sinh viên</label>
+                    <label class="col-sm-2 control-label">Mã sinh viên ( * )</label>
                     <div class="col-sm-10">
                       <input id="masv" type="text" class="form-control">
+                      <label id="error_masv" for="cname" class="error" style="display: none;"></label>
                     </div>
                   </div>
                   <div class="form-group">
@@ -39,7 +40,10 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Diện ưu tiên</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="dienuutien">
+                      <select class="form-control" id="dienuutien">
+                        <option value="1">Không ưu tiên</option>
+                        <option value="2">Ưu tiên</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
@@ -51,7 +55,7 @@
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Ngày sinh</label>
                     <div class="col-sm-10">
-                      <input class="form-control datetimepicker" type="" name="">
+                      <input id="ngaysinh" class="form-control datetimepicker" type="" name="">
                     </div>
                   </div>
                 <div class="form-group">
@@ -64,26 +68,23 @@
                     <label class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="email">
-                      <label id="error_email" for="cname" class="error" style="display: none;"></label>
                     </div>
                 </div>
                  <div class="form-group">
                     <label class="col-sm-2 control-label">Số điện thoại</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="sodt">
-                      <label id="error_email" for="cname" class="error" style="display: none;"></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Ghi chú</label>
                     <div class="col-sm-10">
                       <textarea id="ghichu" style="width: 100%; height: 100px;"></textarea>
-                      <label id="error_email" for="cname" class="error" style="display: none;"></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"></label>
-                    <div class="col-sm-10"><button id="submit" type="button" class="btn btn-primary">Thêm tài khoản</button></div>
+                    <div class="col-sm-10"><button id="submit" type="button" class="btn btn-primary">Thêm sinh viên</button></div>
                 </div>
               </div>
             </div>
@@ -94,7 +95,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Tài Khoản</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Sinh viên</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -102,7 +103,7 @@
       <div class="modal-body">
             <div>
                 <img class="modal-img-custom" src="{{ asset('img/success.png') }}">
-                <span class="modal-content-custom">Thêm tài khoản thành công</span>
+                <span class="modal-content-custom">Thêm sinh viên thành công</span>
             </div>
       </div>
       <div class="modal-footer">
@@ -115,7 +116,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Tài Khoản</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Sinh viên</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -123,7 +124,7 @@
       <div class="modal-body">
             <div>
                 <img class="modal-img-custom" src="{{ asset('img/error.png') }}">
-                <span class="modal-content-custom">Tài khoản đã tồn tại</span>
+                <span class="modal-content-custom">Mã sinh viên đã tồn tại</span>
             </div>
       </div>
       <div class="modal-footer">
@@ -137,42 +138,38 @@
 <script src="{{asset('js/main.js')}}"></script>
 <script type="text/javascript">
     $('body').prepend('<div id="wait" class="wait"><img class="loadding" src="{{ asset('img/Spinner.gif') }}"" width="120" height="120" /></div>');
-    var error_email = '';
-    var error_repassword = '';
-    var error_password = '';
-    var password = '';
-    var repassword = '';
-    $('#email').focusout(function(){
+    var error_masv = '';
+    $('#masv').focusout(function(){
         checkemail();
-    })
-    $('#password').focusout(function(){
-        checkPassword();
-    })
-    $('#repassword').focusout(function(){
-        checkRepassword();
     })
     $('#submit').click(function(){
         checkemail();
-        checkPassword();
-        checkRepassword();
-        if (error_email == '' && error_password == '' && error_repassword == '') {
+        if (error_masv == '') {
             var name = $('#name').val();
             var masv = $('#masv').val();
             var lopkhoa = $('#lopkhoa').val();
-            var chucvu = $('#chucvu').val();
+            var dienuutien = $('#dienuutien').val();
+            var maphong = $('#maphong').val();
+            var ngaysinh = $('#ngaysinh').val();
+            var quequan = $('#quequan').val();
             var email = $('#email').val();
-            var password = $('#password').val();
+            var sodt = $('#sodt').val();
+            var ghichu = $('#ghichu').val();
             $.ajax({
-                url: '{{ route("ajaxUser") }}',
+                url: '{{ route("sinhVienAjax") }}',
                 type: 'POST',
                 data: {
                     name: name,
                     masv: masv,
                     lopkhoa: lopkhoa,
-                    chucvu: chucvu,
+                    dienuutien: dienuutien,
+                    maphong: maphong,
+                    ngaysinh: ngaysinh,
+                    quequan: quequan,
                     email: email,
-                    password: password,
-                    action: 'themTaiKhoan',
+                    sodt: sodt,
+                    ghichu: ghichu,
+                    action: 'themSinhVien',
                     "_token": "{{ csrf_token() }}",
                 } ,
                 success: function (results) {
@@ -186,45 +183,16 @@
         } else {
             return false;
         }
-    })
+    });
     function checkemail(){
-        var email = $('#email').val();
-        if (email.length == 0) {
-            error_email = 'Email không được để trống';
-            $('#error_email').html(error_email);
-            $('#error_email').css('display','block');
+        var masv = $('#masv').val();
+        if (masv.length == 0) {
+            error_email = 'Mã sinh viên không được để trống';
+            $('#error_masv').html(error_email);
+            $('#error_masv').css('display','block');
         } else {
             error_email = ''
-            $('#error_email').css('display','none');
-        }
-    }
-    function checkPassword(){
-        password = $('#password').val();
-        if (password.length == 0) {
-            error_password = 'Mật khẩu không được để trống';
-            $('#error_password').html(error_password);
-            $('#error_password').css('display','block');
-        } else {
-            error_password = ''
-            $('#error_password').css('display','none');
-        }
-    }
-    function checkRepassword(){
-        repassword = $('#repassword').val();
-        if (repassword.length == 0) {
-            error_repassword = 'Mật khẩu không được để trống';
-            $('#error_repassword').html(error_repassword);
-            $('#error_repassword').css('display','block');
-        } else {
-            error_repassword = '';
-            if (repassword != password) {
-                error_repassword = 'Mật khẩu xác nhận không đúng';
-                $('#error_repassword').html(error_repassword);
-                $('#error_repassword').css('display','block');
-            } else {
-                error_repassword = '';
-                $('#error_repassword').css('display','none');
-            }
+            $('#error_masv').css('display','none');
         }
     }
 </script>
