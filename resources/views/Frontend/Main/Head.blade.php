@@ -24,7 +24,7 @@
               <a class="navbar-brand" href="#" style="color: #fff">GIỚI THIỆU</a>
             </div>
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff">SINH VIÊN</a>
+              <a class="navbar-brand" href="{{ route('sinhVien') }}" style="color: #fff">SINH VIÊN</a>
             </div>
             <div class="navbar-header">
               <a class="navbar-brand" href="#" style="color: #fff">HƯỚNG DẪN</a>
