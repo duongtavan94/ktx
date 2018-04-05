@@ -39,4 +39,31 @@ class ClassSinhVien extends ServiceProvider
         }
         return $result;
     }
+
+    public static function searchSinhVien($request)
+    {
+        $result = [
+            'success' => 0,
+            'obj' => '',
+            'message' => '',
+        ];
+        $name = $request->name;
+        $masv = $request->masv;
+        $check = DB::table('sinhvien');
+        if (!empty($name)) {
+            $check = $check
+                ->where('name', 'like', '%' . $name . '%');
+        }
+        if (!empty($masv)) {
+            $check = $check
+                ->orWhere('masv', $masv);
+        }
+        $check = $check->get();
+        if (count($check) == 0) {
+            return $result;
+        }
+        $result['success'] = 1;
+        $result['obj'] = $check;
+        return $result;
+    }
 }

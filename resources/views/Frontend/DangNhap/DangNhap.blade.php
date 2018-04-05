@@ -46,10 +46,10 @@ $(document).ready(function(){
     dangnhap();
 })
 function dangnhap(){
+    $('body').prepend('<div id="wait" class="wait"><img class="loadding" src="{{ asset('img/Spinner.gif') }}"" width="120" height="120" /></div>');
     $('#dangnhap').click(function(){
         var email = $('#email').val();
         var password = $('#password').val();
-        $('body').prepend('<div id="wait" class="wait"><img class="loadding" src="{{ asset('img/Spinner.gif') }}"" width="120" height="120" /></div>');
         $.ajax({
             url: '{{ route("dangNhap") }}',
             type: 'POST',
