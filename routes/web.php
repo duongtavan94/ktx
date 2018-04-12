@@ -13,7 +13,9 @@
 Route::get('/', 'Frontend\TrangChu\TrangChuController@getHome')->name('trangchu');
 Route::get('/tim-kiem', 'Frontend\TrangChu\TrangChuController@timKiem')->name('timKiem');
 Route::get('/tin-tuc/{id}', 'Frontend\TrangChu\TrangChuController@noiDungBaiViet')->name('tintuc');
-Route::get('/gioi-thieu', 'Frontend\GioiThieu\GioiThieuController@getHome');
+Route::get('/gioi-thieu', 'Frontend\GioiThieu\GioiThieuController@getHome')->name('gioiThieu');
+Route::get('/so-do', 'Frontend\GioiThieu\GioiThieuController@soDo')->name('soDo');
+Route::get('/lien-he', 'Frontend\GioiThieu\GioiThieuController@lienHe')->name('lienHe');
 Route::get('/dang-ky', 'Frontend\DangKy\DangKyController@getHome')->name('dangky');
 Route::get('/dang-ky-ajax', 'Frontend\DangKy\DangKyController@ajax')->name('ajaxDangky');
 Route::get('/dang-nhap', 'Frontend\DangNhap\DangNhapController@getHome');

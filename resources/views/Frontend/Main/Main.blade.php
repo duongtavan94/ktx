@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>@yield('title')</title>
+    <link rel="SHORTCUT ICON" href="{{ asset('img/favicon.png')}}" type="image/x-icon"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/fontawesome-all.min.css') }}">

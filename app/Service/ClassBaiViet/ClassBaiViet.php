@@ -68,7 +68,7 @@ class ClassBaiViet extends ServiceProvider
             ->where('tthienthi', 2)
             ->where('trangthai', 0)
             ->orderBy('created_at', 'desc')
-            ->limit(10)
+            ->limit(4)
             ->get();
         $firstTinSinhVien = DB::table('posts')
             ->where('loaitin', 2)
@@ -228,8 +228,30 @@ class ClassBaiViet extends ServiceProvider
         return $result;
     }
 
-    public static function timKiem($noidung)
+    public static function tinGioiThieu()
     {
-        dd($noidung);
+        $tinGioiThieu = DB::table('posts')
+            ->where('loaitin', 3)
+            ->orderBy('created_at', 'desc')
+            ->first();
+        return $tinGioiThieu;
+    }
+
+    public static function tinSoDo()
+    {
+        $tinSoDo = DB::table('posts')
+            ->where('loaitin', 4)
+            ->orderBy('created_at', 'desc')
+            ->first();
+        return $tinSoDo;
+    }
+
+    public static function tinLienHe()
+    {
+        $tinLienHe = DB::table('posts')
+            ->where('loaitin', 5)
+            ->orderBy('created_at', 'desc')
+            ->first();
+        return $tinLienHe;
     }
 }

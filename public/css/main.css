@@ -35,6 +35,7 @@
     text-align: center;
     background-color: #007bff;
     border-radius: 5px;
+    margin-top: 20px;
 }
 .foot-2 {
     text-align: center; height: 160px; line-height: 160px;
@@ -105,6 +106,7 @@
 .content-1 {
     margin-top: 5px;
     padding-left: 0px;
+    padding-right: 0px;
     font-size: 16px;
 }
 .gioithieu-1 {

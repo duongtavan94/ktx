@@ -67,6 +67,10 @@
                     <div class="col-sm-10">
                       <select class="form-control" name="loaitin">
                           <option value="1">Thông báo</option>
+                          <option value="2">Tin sinh viên</option>
+                          <option value="3">Giới thiệu</option>
+                          <option value="4">Sơ đồ</option>
+                          <option value="5">Liên hệ</option>
                       </select>
                     </div>
                   </div>

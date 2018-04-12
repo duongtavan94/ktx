@@ -21,7 +21,7 @@
               <a class="navbar-brand" href="{{ route('trangchu') }}" style="color: #fff"><i class="fas fa-home"></i><span class="menu-2">TRANG CHỦ</span></a>
             </div>
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff">GIỚI THIỆU</a>
+              <a class="navbar-brand" href="{{ route('gioiThieu') }}" style="color: #fff">GIỚI THIỆU</a>
             </div>
             <div class="navbar-header">
               <a class="navbar-brand" href="{{ route('sinhVien') }}" style="color: #fff">SINH VIÊN</a>
@@ -30,10 +30,10 @@
               <a class="navbar-brand" href="#" style="color: #fff">HƯỚNG DẪN</a>
             </div>
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff">SƠ ĐỒ</a>
+              <a class="navbar-brand" href="{{ route('soDo') }}" style="color: #fff">SƠ ĐỒ</a>
             </div>
             <div class="navbar-header">
-              <a class="navbar-brand" href="#" style="color: #fff">LIÊN HỆ</a>
+              <a class="navbar-brand" href="{{ route('lienHe') }}" style="color: #fff">LIÊN HỆ</a>
             </div>
             <div class="navbar-header">
               <a class="navbar-brand" href="{{ route('dangNhap') }}" style="color: #fff">ĐĂNG NHẬP</a>

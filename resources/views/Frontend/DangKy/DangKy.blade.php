@@ -1,6 +1,6 @@
 @extends('Frontend.Main.Main')
 @section('title')
-GioiThieu
+Đăng ký
 @endsection
 @section('content')
 <div class="col-xs-12 content-1">

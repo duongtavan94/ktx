@@ -2,8 +2,8 @@
     <div class="col-xs-12">
         <div class="sidenav">
           <a class="sidebar1" href="">DANH MỤC MENU</a>
-          <a href="">Giới thiệu chung</a>
-          <a href="">Thông báo</a>
+          <a href="{{ route('gioiThieu') }}">Giới thiệu chung</a>
+          <a href="{{ route('trangchu') }}">Thông báo</a>
           <a href="">Nội quy quy chế</a>
           <a href="">Hoạt động KTX</a>
           <a href="">Dịch vụ</a>
