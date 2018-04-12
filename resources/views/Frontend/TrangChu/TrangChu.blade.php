@@ -6,7 +6,7 @@ GioiThieu
 <div class="col-xs-12 content-1">
     <div class="col-xs-12 dangnhap-1">Tin tức</div>
     <div class="col-xs-12 dangky-1 pdl-0 pdr-0">
-        <div class="col-xs-3 pdl-0"><img class="img-rounded trangchu-1" src="{{ asset($data['firstTinThongBao']->anhdaidien) }}"></div>
+        <div class="col-xs-3 pdl-0"><a href="{{route('tintuc',['id'=>$data['firstTinThongBao']->id])}}"><img class="img-rounded trangchu-1" src="{{ asset($data['firstTinThongBao']->anhdaidien) }}"></a></div>
         <div class="col-xs-9 pdr-0"><a href="{{route('tintuc',['id'=>$data['firstTinThongBao']->id])}}">{{ $data['firstTinThongBao']->tieude }}</a></div>
     </div>
     <div class="col-xs-12 pdl-0 pdr-0"><hr/></div>

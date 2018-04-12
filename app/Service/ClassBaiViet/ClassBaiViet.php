@@ -227,4 +227,9 @@ class ClassBaiViet extends ServiceProvider
         }
         return $result;
     }
+
+    public static function timKiem($noidung)
+    {
+        dd($noidung);
+    }
 }

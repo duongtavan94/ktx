@@ -11,6 +11,7 @@
  */
 
 Route::get('/', 'Frontend\TrangChu\TrangChuController@getHome')->name('trangchu');
+Route::get('/tim-kiem', 'Frontend\TrangChu\TrangChuController@timKiem')->name('timKiem');
 Route::get('/tin-tuc/{id}', 'Frontend\TrangChu\TrangChuController@noiDungBaiViet')->name('tintuc');
 Route::get('/gioi-thieu', 'Frontend\GioiThieu\GioiThieuController@getHome');
 Route::get('/dang-ky', 'Frontend\DangKy\DangKyController@getHome')->name('dangky');

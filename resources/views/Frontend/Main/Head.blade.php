@@ -7,11 +7,11 @@
     <div class="col-xs-4 head-2">
         <div class="col-xs-12"><i class="fas fa-map-marker-alt"></i><span class="head-3">136 Xuân THủy - Cầu giấy - Hà nội</span></div>
         <div class="col-xs-12 head-4"><i class="fas fa-phone"></i><span class="head-3">024-37547823</span></div>
-        <form class="navbar-form navbar-left">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+        <form class="navbar-form navbar-left" action="{{ route('timKiem') }}">
+                <div class="form-group">
+                  <input id="noidungtimkiem" name="noidung" type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" id="timmkiem" class="btn btn-primary">Submit</button>
         </form>
     </div>
     <div class="col-xs-12 head-4">
