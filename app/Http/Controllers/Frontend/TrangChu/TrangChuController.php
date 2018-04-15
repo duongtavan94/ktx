@@ -34,7 +34,7 @@ class TrangChuController extends Controller
         if (!empty($noidung)) {
             $data = DB::table('posts')
                 ->where('tieude', 'like', '%' . $noidung . '%')
-                ->paginate(1);
+                ->paginate(5);
         }
         return view('Frontend.TrangChu.TimKiem', [
             'baiviet' => $data,
