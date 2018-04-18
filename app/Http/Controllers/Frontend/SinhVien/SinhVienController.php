@@ -25,10 +25,18 @@ class SinhVienController extends Controller
             case 'search':
                 $result = ClassSinhVien::searchSinhVien($request);
                 break;
+            case 'dangKyPhong':
+                $result = ClassSinhVien::themSinhVien($request);
+                break;
             default:
                 # code...
                 break;
         }
         return response()->json($result);
+    }
+
+    public function dangKyPhong()
+    {
+        return view('Frontend.SinhVien.DangKyPhong');
     }
 }

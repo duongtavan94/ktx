@@ -21,8 +21,9 @@ Route::get('/dang-ky-ajax', 'Frontend\DangKy\DangKyController@ajax')->name('ajax
 Route::get('/dang-nhap', 'Frontend\DangNhap\DangNhapController@getHome');
 Route::post('/dang-nhap', 'Frontend\DangNhap\DangNhapController@dangNhap')->name("dangNhap");
 Route::get('/sinh-vien', 'Frontend\SinhVien\SinhVienController@getHome')->name('sinhVien');
-Route::get('/tra-cuu-sinh-vien', 'Frontend\SinhVien\SinhVienController@traCuu')->name('traCuuSinhVien')->middleware('checklogin');
+Route::get('/tra-cuu-sinh-vien', 'Frontend\SinhVien\SinhVienController@traCuu')->name('traCuuSinhVien')->middleware('CheckDangKySinhVien');
 Route::get('/sinh-vien-ajax', 'Frontend\SinhVien\SinhVienController@ajaxSinhVien')->name('ajaxSinhVien');
+Route::get('dang-ky-phong', 'Frontend\SinhVien\SinhVienController@dangKyPhong')->name('dangKyPhong');
 Route::group(['middleware' => 'checklogin'], function () {
     Route::get('admin/home', 'BackEnd\TrangChu\TrangChuController@getHome')->name('adminHome');
     Route::get('admin/them-tai-khoan', 'BackEnd\TaiKhoan\ThemTaiKhoancontroller@getHome')->name('adminAddUser');

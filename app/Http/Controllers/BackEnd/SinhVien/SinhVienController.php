@@ -20,7 +20,6 @@ class SinhVienController extends Controller
             case 'themSinhVien':
                 $result = ClassSinhVien::themSinhVien($request);
                 break;
-
             default:
                 # code...
                 break;

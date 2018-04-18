@@ -22,7 +22,9 @@ class ClassDangNhap extends ServiceProvider
             ->where('password', $password)
             ->first();
         if (!empty($checkLogin)) {
+            $chucvu = $checkLogin->chucvu;
             Session::put('user.id', $email);
+            Session::put('user.chucvu', $chucvu);
             $result['success'] = 1;
         }
         return $result;
