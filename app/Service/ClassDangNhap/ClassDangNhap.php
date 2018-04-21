@@ -25,6 +25,10 @@ class ClassDangNhap extends ServiceProvider
             $chucvu = $checkLogin->chucvu;
             Session::put('user.id', $email);
             Session::put('user.chucvu', $chucvu);
+            Session::put('user.name', $checkLogin->name);
+            Session::put('user.masv', $checkLogin->masv);
+            Session::put('user.lopkhoa', $checkLogin->lopkhoa);
+            Session::put('user.email', $checkLogin->email);
             $result['success'] = 1;
         }
         return $result;

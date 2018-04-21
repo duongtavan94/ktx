@@ -6,11 +6,11 @@
 <div class="col-xs-12 content-1">
     <div class="col-xs-12 gioithieu-1">Đăng ký phòng</div>
     <div>Họ và tên</div>
-    <div><input id="name" class="form-control" type="text" name=""></div>
+    <div><input disabled="disabled" id="name" class="form-control" type="text" name="" value="{{ Session::get('user.name') }}"></div>
     <div>Mã sinh viên:*</div>
-    <div><input id="masv" class="form-control" type="text" name=""></div>
+    <div><input disabled="disabled" id="masv" class="form-control" type="text" name="" value="{{ Session::get('user.masv') }}"></div>
     <div>Lớp/ Khoa</div>
-    <div><input id="lopkhoa" class="form-control" type="text" name=""></div>
+    <div><input disabled="disabled" id="lopkhoa" class="form-control" type="text" name="" value="{{ Session::get('user.lopkhoa') }}"></div>
     <div>Diện ưu tiên</div>
     <div>
         <select id="dienuutien" class="form-control">
@@ -18,18 +18,25 @@
             <option value="2">Ưu tiên</option>
         </select>
     </div>
-    <div>Mã phòng</div>
-    <div><input id="maphong" class="form-control" type="text" name=""></div>
     <div>Ngày sinh</div>
-    <div><input id="ngaysinh" class="form-control datetimepicker" type="text" name=""></div>
-    <div>Quê quán</div>
-    <div><input id="quequan" class="form-control" name=""></div>
-    <div>Email</div>
-    <div><input id="email" class="form-control" name=""></div>
-    <div>Số điện thoại</div>
-    <div><input id="sodienthoai" class="form-control" name=""></div>
-    <div>Ghi chú</div>
-    <div><input id="ghichu" class="form-control" name=""></div>
+    <div><input id="ngaysinh" class="form-control datetimepicker" type="text" name="" value=""></div>
+    <div>Ngày đăng ký</div>
+    <div><input id="ngaydangky" class="form-control datetimepicker" type="text" name="" value=""></div>
+    <div>Số CMND *</div>
+    <div><input id="cmnd" class="form-control" type="text" name=""></div>
+    <div>Chọn phòng</div>
+    <div>
+        <select id="maphong" class="form-control">
+            <option value="none">Chưa chọn</option>
+            @foreach($danhSachPhong as $value)
+            <option value="{{ $value->maphong }}">{{ $value->maphong }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="giaphong">Giá phòng</div>
+    <div class="giaphong"><input disabled="disabled" class="form-control" type="" name="" value="{{number_format(1500000)}}"></div>
+    <div class="giaphong">Chỗ trống</div>
+    <div class="giaphong"><input id="chotrong" disabled="disabled" class="form-control" type="" name="" value=""></div>
     <div class="error" id="error"></div>
     <div class="dangky-1"><button id="dangky" type="button" class="btn btn-success">Đăng ký</button></div>
 </div>
@@ -67,7 +74,7 @@
       <div class="modal-body">
             <div>
                 <img class="modal-img-custom" src="{{ asset('img/error.png') }}">
-                <span class="modal-content-custom">Mã sinh viên đã được đưng ký</span>
+                <span class="modal-content-custom">Mã sinh viên đã được đăng ký</span>
             </div>
       </div>
       <div class="modal-footer">
@@ -79,27 +86,45 @@
 @endsection
 @section('script')
 <script type="text/javascript">
+$('body').prepend('<div id="wait" class="wait"><img class="loadding" src="{{ asset('img/Spinner.gif') }}"" width="120" height="120" /></div>');
 var error = '';
+var choTrong = <?php echo json_encode($choTrong); ?>;
+$('#maphong').change(function(){
+    var maphong = $('#maphong').val();
+    var choTrongNew = choTrong[maphong];
+    $('#chotrong').val(choTrongNew);
+    if (maphong == 'none') {
+        $('.giaphong').hide();
+    } else {
+        $('.giaphong').show();
+    }
+
+})
 $('#dangky').click(function(){
     var name = $('#name').val();
     var masv = $('#masv').val();
     var lopkhoa = $('#lopkhoa').val();
     var dienuutien = $('#dienuutien').val();
     var maphong = $('#maphong').val();
+    var ngaydangky = $('#ngaydangky').val();
+    var cmnd = $('#cmnd').val();
+    var giaphong = '1500000';
     var ngaysinh = $('#ngaysinh').val();
-    var quequan = $('#quequan').val();
-    var email = $('#email').val();
-    var sodienthoai = $('#sodienthoai').val();
-    var ghichu = $('#ghichu').val();
-    if (masv == '') {
-        error = 'Mã sinh viên không được để trống';
-        $('#error').html(error);
-        return false;
+    if (cmnd == '') {
+        error = 'Bạn chưa nhập chứng minh thư nhân dân';
     } else {
         error = '';
-        $('#error').html(error);
+        if (maphong == 'none') {
+        error = 'Bạn chưa chọn phòng';
+        } else {
+            error = '';
+        }
     }
-    $.ajax({
+    $('#error').html(error);
+    if (error != '') {
+        return false;
+    } else {
+        $.ajax({
         url: '{{ route("ajaxSinhVien") }}',
         type: 'GET',
         data: {
@@ -108,11 +133,10 @@ $('#dangky').click(function(){
             lopkhoa: lopkhoa,
             dienuutien: dienuutien,
             maphong: maphong,
+            ngaydangky: ngaydangky,
+            cmnd: cmnd,
+            giaphong: giaphong,
             ngaysinh: ngaysinh,
-            quequan: quequan,
-            email: email,
-            sodt: sodienthoai,
-            ghichu: ghichu,
             action: 'dangKyPhong',
             "_token": "{{ csrf_token() }}",
         } ,
@@ -124,6 +148,7 @@ $('#dangky').click(function(){
             }
         },
     });
+    }
 })
 </script>
 @endsection

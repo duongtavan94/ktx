@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\SinhVien;
 
 use App\Http\Controllers\Controller;
 use App\Service\ClassSinhVien\ClassSinhVien;
+use App\Service\PhongKTX\ClassPhongKTX;
 use Illuminate\Http\Request;
 
 class SinhVienController extends Controller
@@ -26,7 +27,7 @@ class SinhVienController extends Controller
                 $result = ClassSinhVien::searchSinhVien($request);
                 break;
             case 'dangKyPhong':
-                $result = ClassSinhVien::themSinhVien($request);
+                $result = ClassPhongKTX::dangKyPhong($request);
                 break;
             default:
                 # code...
@@ -37,6 +38,14 @@ class SinhVienController extends Controller
 
     public function dangKyPhong()
     {
-        return view('Frontend.SinhVien.DangKyPhong');
+        $danhSachPhong = ClassPhongKTX::danhSachPhong();
+        foreach ($danhSachPhong as $value) {
+            $choTrong[$value->maphong] = $value->chotrong;
+        }
+        $choTrong['none'] = '';
+        return view('Frontend.SinhVien.DangKyPhong', [
+            'danhSachPhong' => $danhSachPhong,
+            'choTrong' => $choTrong,
+        ]);
     }
 }
