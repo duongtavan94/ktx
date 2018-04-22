@@ -18,7 +18,7 @@ class ClassDangNhap extends ServiceProvider
         $password = $request->password;
         $password = md5($password);
         $checkLogin = DB::table('users')
-            ->where('email', $email)
+            ->where('masv', $email)
             ->where('password', $password)
             ->first();
         if (!empty($checkLogin)) {

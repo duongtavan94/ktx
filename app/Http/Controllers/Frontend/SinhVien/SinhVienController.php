@@ -41,11 +41,14 @@ class SinhVienController extends Controller
         $danhSachPhong = ClassPhongKTX::danhSachPhong();
         foreach ($danhSachPhong as $value) {
             $choTrong[$value->maphong] = $value->chotrong;
+            $choTrong2[$value->maphong] = $value->chotrong2;
         }
         $choTrong['none'] = '';
+        $choTrong2['none'] = '';
         return view('Frontend.SinhVien.DangKyPhong', [
             'danhSachPhong' => $danhSachPhong,
             'choTrong' => $choTrong,
+            'choTrong2' => $choTrong2,
         ]);
     }
 }

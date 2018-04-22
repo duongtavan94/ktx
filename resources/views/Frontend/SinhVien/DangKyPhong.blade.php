@@ -24,6 +24,13 @@
     <div><input id="ngaydangky" class="form-control datetimepicker" type="text" name="" value=""></div>
     <div>Số CMND *</div>
     <div><input id="cmnd" class="form-control" type="text" name=""></div>
+    <div>Kỳ đăng ký</div>
+    <div>
+        <select id="kydangky" class="form-control">
+            <option value="1">Kỳ I</option>
+            <option value="2">Kỳ II</option>
+        </select>
+    </div>
     <div>Chọn phòng</div>
     <div>
         <select id="maphong" class="form-control">
@@ -89,10 +96,18 @@
 $('body').prepend('<div id="wait" class="wait"><img class="loadding" src="{{ asset('img/Spinner.gif') }}"" width="120" height="120" /></div>');
 var error = '';
 var choTrong = <?php echo json_encode($choTrong); ?>;
+var choTrong2 = <?php echo json_encode($choTrong2); ?>;
 $('#maphong').change(function(){
     var maphong = $('#maphong').val();
     var choTrongNew = choTrong[maphong];
-    $('#chotrong').val(choTrongNew);
+    var choTrongNew2 =choTrong2[maphong];
+    var kydangky = $('#kydangky').val();
+    if (kydangky == 1) {
+        choTrongCon = choTrongNew;
+    } else {
+        choTrongCon = choTrongNew2;
+    }
+    $('#chotrong').val(choTrongCon);
     if (maphong == 'none') {
         $('.giaphong').hide();
     } else {
@@ -110,6 +125,8 @@ $('#dangky').click(function(){
     var cmnd = $('#cmnd').val();
     var giaphong = '1500000';
     var ngaysinh = $('#ngaysinh').val();
+    var kydangky = $('#kydangky').val();
+    var choTrong = $('#chotrong').val();
     if (cmnd == '') {
         error = 'Bạn chưa nhập chứng minh thư nhân dân';
     } else {
@@ -121,7 +138,11 @@ $('#dangky').click(function(){
         }
     }
     $('#error').html(error);
-    if (error != '') {
+    if (error != '' || choTrong == 0) {
+        if (choTrong == 0) {
+            error = 'Phòng dã hết số lượng dặt';
+            $('#error').html(error);
+        }
         return false;
     } else {
         $.ajax({
@@ -137,6 +158,7 @@ $('#dangky').click(function(){
             cmnd: cmnd,
             giaphong: giaphong,
             ngaysinh: ngaysinh,
+            kydangky: kydangky,
             action: 'dangKyPhong',
             "_token": "{{ csrf_token() }}",
         } ,
